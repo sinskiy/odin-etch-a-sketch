@@ -23,7 +23,9 @@ function createColumn(column) {
 }
 
 function handleGridSizeChange() {
-  const newSize = prompt("Input a new grid size from 1 to 100 (default: 16)");
+  const newSize = prompt(
+    "Input a new grid size from 1 to 100\n(Click on Cancel, submit empty/non-number prompt or press escape to cancel)"
+  );
   if (newSize >= 1 && newSize <= 100) {
     SIZE = newSize;
     currentGridSize.textContent = SIZE;
