@@ -16,6 +16,8 @@ function createColumn(column) {
   for (let i = 0; i < ROWS; i++) {
     const itemInColumn = document.createElement("div");
     itemInColumn.classList.add("item");
+    itemInColumn.onmouseover = (e) => e.target.classList.add("item--hovered");
+
     column.appendChild(itemInColumn);
   }
 }

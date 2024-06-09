@@ -10,7 +10,9 @@
   width: 1rem;
   height: 1rem;
 
-  margin: 1px;
+  background-color: antiquewhite;
+}
 
-  background-color: black;
+.item--hovered {
+  background-color: greenyellow;
 }
