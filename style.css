@@ -61,7 +61,3 @@ button:active {
   flex-grow: 1;
   background-color: #98d4a4;
 }
-
-.item--hovered {
-  background-color: #003919;
-}

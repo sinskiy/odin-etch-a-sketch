@@ -16,11 +16,35 @@ function createColumn(column) {
   for (let i = 0; i < SIZE; i++) {
     const itemInColumn = document.createElement("div");
     itemInColumn.classList.add("item");
-    itemInColumn.onmouseover = (e) => e.target.classList.add("item--hovered");
+    itemInColumn.addEventListener("mouseenter", handleItemHover);
 
     column.appendChild(itemInColumn);
   }
 }
+
+function handleItemHover(e) {
+  const { classList, style } = e.target;
+  if (!classList.contains("item--hovered")) {
+    style.backgroundColor = randomRGBColor();
+    classList.add("item--hovered");
+  } else {
+    style.opacity = darken(style.opacity);
+  }
+}
+
+function darken(opacity) {
+  if (opacity) {
+    return opacity - 0.1;
+  } else {
+    return 0.9;
+  }
+}
+
+const currentGridSize = document.querySelector("#current-grid-size");
+currentGridSize.textContent = SIZE;
+
+const gridSize = document.querySelector("#grid-size");
+gridSize.addEventListener("click", handleGridSizeChange);
 
 function handleGridSizeChange() {
   const newSize = prompt(
@@ -34,8 +58,13 @@ function handleGridSizeChange() {
   createRows(container);
 }
 
-const currentGridSize = document.querySelector("#current-grid-size");
-currentGridSize.textContent = SIZE;
+function randomRGBColor() {
+  const red = randomBetween(0, 255);
+  const green = randomBetween(0, 255);
+  const blue = randomBetween(0, 255);
+  const RGB = `rgb(${red},${green},${blue})`;
+  return RGB;
+}
 
-const gridSize = document.querySelector("#grid-size");
-gridSize.addEventListener("click", handleGridSizeChange);
+const randomBetween = (min, max) =>
+  min + Math.floor(Math.random() * (max - min + 1));
